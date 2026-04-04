@@ -65,6 +65,19 @@ class AppSettingsDesign(
                     requests.trySend(Request.ReCreateAllActivities)
                 }
             }
+            
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+                switch(
+                    value = uiStore::dynamicColor,
+                    icon = R.drawable.ic_baseline_color_lens,
+                    title = R.string.dynamic_color,
+                    summary = R.string.dynamic_color_summary,
+                ) {
+                    listener = OnChangedListener {
+                        requests.trySend(Request.ReCreateAllActivities)
+                    }
+                }
+            }
 
             switch(
                 value = uiStore::hideAppIcon,

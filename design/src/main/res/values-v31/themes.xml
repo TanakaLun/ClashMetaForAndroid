@@ -1,16 +1,24 @@
 <resources>
     <style name="AppThemeLight" parent="@style/Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/color_clash_light</item>
-        <item name="colorSurface">@color/color_light_background</item>
+        <item name="colorPrimary">?attr/colorPrimary</item>
+        <item name="colorOnPrimary">?attr/colorOnPrimary</item>
+        <item name="colorPrimaryContainer">?attr/colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">?attr/colorOnPrimaryContainer</item>
+        
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="colorSurface">?attr/colorSurface</item>
+        <item name="colorOnSurface">?attr/colorOnSurface</item>
+        <item name="colorSurfaceVariant">?attr/colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">?attr/colorOnSurfaceVariant</item>
+
+        <item name="colorOutline">?attr/colorOutline</item>
+
         <item name="android:showText">false</item>
     </style>
 
     <style name="AppThemeDark" parent="@style/Theme.Material3.Dark.NoActionBar">
-        <item name="colorPrimary">@color/color_clash_dark</item>
-        <item name="colorSurface">@color/color_dark_surface</item>
+        <item name="colorPrimary">?attr/colorPrimary</item>
+        <item name="android:windowBackground">?attr/colorSurface</item>
         <item name="android:showText">false</item>
     </style>
-
-    <style name="AppBottomSheetDialogLight" parent="@style/Theme.Material3.Light.BottomSheetDialog" />
-    <style name="AppBottomSheetDialogDark" parent="@style/Theme.Material3.Dark.BottomSheetDialog" />
 </resources>

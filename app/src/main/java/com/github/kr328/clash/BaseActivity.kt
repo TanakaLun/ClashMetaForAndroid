@@ -24,6 +24,7 @@ import com.github.kr328.clash.remote.Broadcasts
 import com.github.kr328.clash.remote.Remote
 import com.github.kr328.clash.util.ActivityResultLifecycle
 import com.github.kr328.clash.util.ApplicationObserver
+import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import java.util.*
@@ -87,6 +88,9 @@ abstract class BaseActivity<D : Design<*>> : AppCompatActivity(),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (uiStore.dynamicColor) {
+            DynamicColors.applyToActivityIfAvailable(this)
+        }
         super.onCreate(savedInstanceState)
         applyDayNight()
 
@@ -198,11 +202,19 @@ abstract class BaseActivity<D : Design<*>> : AppCompatActivity(),
 
     private fun applyDayNight(config: Configuration = resources.configuration) {
         val dayNight = queryDayNight(config)
-        when (dayNight) {
-            DayNight.Night -> theme.applyStyle(R.style.AppThemeDark, true)
-            DayNight.Day -> theme.applyStyle(R.style.AppThemeLight, true)
+        if (!uiStore.dynamicColor) {
+            when (dayNight) {
+                DayNight.Night -> theme.applyStyle(R.style.AppThemeDark, true)
+                DayNight.Day -> theme.applyStyle(R.style.AppThemeLight, true)
+            }
+        } else {
+            val baseM3Theme = if (dayNight == DayNight.Night) 
+                com.google.android.material.R.style.Theme_Material3_Dark_NoActionBar
+            else 
+                com.google.android.material.R.style.Theme_Material3_Light_NoActionBar
+            theme.applyStyle(baseM3Theme, false) 
         }
-
+    
         window.isAllowForceDarkCompat = false
         window.isSystemBarsTranslucentCompat = true
         

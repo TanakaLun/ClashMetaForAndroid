@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:minHeight="@dimen/item_min_height"
+        android:minHeight="72dp"
         android:paddingEnd="@dimen/item_tailing_margin">
 
         <View
             android:id="@+id/icon_view"
-            android:layout_width="@dimen/item_header_component_size"
-            android:layout_height="@dimen/item_header_component_size"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_centerVertical="true"
             android:layout_marginHorizontal="@dimen/item_header_margin"
             android:clickable="false"
@@ -25,20 +26,23 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@id/switch_view"
             android:layout_toEndOf="@id/icon_view"
+            android:layout_marginEnd="16dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/title_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorOnSurface" />
 
             <TextView
                 android:id="@+id/summary_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/item_text_margin"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+                android:layout_marginTop="2dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant" />
         </LinearLayout>
 
         <com.google.android.material.materialswitch.MaterialSwitch
