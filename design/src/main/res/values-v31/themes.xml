@@ -22,6 +22,8 @@
         <item name="colorOnSurfaceVariant">?attr/colorOnSurfaceVariant</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>
         <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
+        <item name="android:textColor">?attr/colorOnSurface</item> 
+        <item name="android:textColorHint">?attr/colorOutline</item>
         
         <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Material3.HeadlineSmall</item>
         <item name="textAppearanceBodyMedium">@style/TextAppearance.Material3.BodyMedium</item>
