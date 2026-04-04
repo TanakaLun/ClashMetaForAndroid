@@ -88,12 +88,17 @@ abstract class BaseActivity<D : Design<*>> : AppCompatActivity(),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val dayNightValue = queryDayNight()
+        val themeId = when (queryDayNight()) {
+            DayNight.Night -> R.style.AppThemeDark
+            DayNight.Day -> R.style.AppThemeLight
+        }
+        setTheme(themeId)
         if (uiStore.dynamicColor) {
             DynamicColors.applyToActivityIfAvailable(this)
         }
         super.onCreate(savedInstanceState)
-        applyDayNight()
-
+        updateSystemBars(dayNightValue)
         // Apply excludeFromRecents setting to all app tasks.
         checkNotNull(getSystemService<ActivityManager>()).appTasks.forEach { task ->
             task.setExcludeFromRecents(uiStore.hideFromRecents)
@@ -190,6 +195,24 @@ abstract class BaseActivity<D : Design<*>> : AppCompatActivity(),
                 design?.showExceptionToast(ClashException(cause))
             }
         }
+    }
+    
+    private fun updateSystemBars(currentDayNight: DayNight) {
+        window.isAllowForceDarkCompat = false
+        window.isSystemBarsTranslucentCompat = true
+        
+        window.statusBarColor = resolveThemedColor(android.R.attr.statusBarColor)
+        window.navigationBarColor = resolveThemedColor(android.R.attr.navigationBarColor)
+    
+        if (Build.VERSION.SDK_INT >= 23) {
+            window.isLightStatusBarsCompat = resolveThemedBoolean(android.R.attr.windowLightStatusBar)
+        }
+    
+        if (Build.VERSION.SDK_INT >= 27) {
+            window.isLightNavigationBarCompat = resolveThemedBoolean(android.R.attr.windowLightNavigationBar)
+        }
+    
+        this.dayNight = currentDayNight
     }
 
     private fun queryDayNight(config: Configuration = resources.configuration): DayNight {

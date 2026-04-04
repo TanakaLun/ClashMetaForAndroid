@@ -19,17 +19,16 @@
     <style name="AppThemeDark" parent="@style/Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">?attr/colorPrimary</item>
         <item name="colorOnSurface">?attr/colorOnSurface</item>
-        
+        <item name="colorOnSurfaceVariant">?attr/colorOnSurfaceVariant</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>
         <item name="android:textColorSecondary">?attr/colorOnSurfaceVariant</item>
         
-        <item name="textAppearanceHeadline6">?attr/textAppearanceHeadlineSmall</item>
-        <item name="textAppearanceBody1">?attr/textAppearanceBodyLarge</item>
-        <item name="textAppearanceBody2">?attr/textAppearanceBodyMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Material3.HeadlineSmall</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Material3.BodyMedium</item>
     
         <item name="android:showText">false</item>
     </style>
-
+    
 </resources>
 
 
