@@ -37,7 +37,7 @@ class LargeActionCard @JvmOverloads constructor(
         }
 
     init {
-        binding.root.setBackgroundColor(Color.TRANSPARENT)
+        binding.root.background = null
 
         context.resolveClickableAttrs(attributeSet, defStyleAttr) {
             isFocusable = focusable(true)
