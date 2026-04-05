@@ -81,8 +81,8 @@ class MainDesign(context: Context) : Design<MainDesign.Request>(context) {
     init {
         binding.self = this
 
-        binding.colorClashStarted = context.resolveThemedColor(com.google.android.material.R.attr.colorPrimary)
-        binding.colorClashStopped = context.resolveThemedColor(com.google.android.material.R.attr.colorPrimaryContainer)
+        binding.colorClashStarted = context.resolveThemedColor(com.google.android.material.R.attr.colorPrimaryContainer)
+        binding.colorClashStopped = context.resolveThemedColor(com.google.android.material.R.attr.colorSurfaceContainerHighest)
     }
 
     fun request(request: Request) {
