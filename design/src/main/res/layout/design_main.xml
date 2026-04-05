@@ -89,7 +89,6 @@
                     app:subtext="@{clashRunning ? @string/format_traffic_forwarded(forwarded) : @string/tap_to_start}"
                     app:text="@{clashRunning ? @string/running : @string/stopped}" />
 
-
                 <com.github.kr328.clash.design.view.LargeActionCard
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
