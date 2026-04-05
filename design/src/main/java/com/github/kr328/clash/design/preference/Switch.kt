@@ -32,27 +32,22 @@ fun PreferenceScreen.switch(
     val impl = object : SwitchPreference {
         override val view: View
             get() = binding.root
-        
         override var icon: Drawable?
-            get() = binding.iconView.drawable
+            get() = binding.iconView.background
             set(value) {
-                binding.iconView.setImageDrawable(value)
+                binding.iconView.background = value
             }
-            
         override var title: CharSequence?
             get() = binding.titleView.text
             set(value) {
                 binding.titleView.text = value
             }
-            
         override var summary: CharSequence?
             get() = binding.summaryView.text
             set(value) {
                 binding.summaryView.text = value
             }
-            
         override var listener: OnChangedListener? = null
-        
         override var enabled: Boolean
             get() = binding.root.isEnabled
             set(value) {
@@ -61,6 +56,7 @@ fun PreferenceScreen.switch(
                 binding.root.isClickable = value
                 binding.root.alpha = if (value) 1.0f else 0.33f
             }
+
     }
 
     if (icon != null) {
