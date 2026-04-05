@@ -36,7 +36,9 @@ class LargeActionCard @JvmOverloads constructor(
             binding.iconView.background = value
         }
 
-    init {        
+    init {
+        // binding.root.setBackgroundColor(Color.TRANSPARENT)
+
         context.resolveClickableAttrs(attributeSet, defStyleAttr) {
             isFocusable = focusable(true)
             isClickable = clickable(true)
