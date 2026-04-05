@@ -1,10 +1,10 @@
 package com.github.kr328.clash.design.view
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
-import androidx.core.content.ContextCompat
 import com.github.kr328.clash.design.R
 import com.github.kr328.clash.design.databinding.ComponentLargeActionLabelBinding
 import com.github.kr328.clash.design.util.*
@@ -16,7 +16,7 @@ class LargeActionCard @JvmOverloads constructor(
     attributeSet: AttributeSet? = null,
     @AttrRes defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attributeSet, defStyleAttr) {
-    
+
     private val binding = ComponentLargeActionLabelBinding
         .inflate(context.layoutInflater, this, true)
 
@@ -32,29 +32,35 @@ class LargeActionCard @JvmOverloads constructor(
         get() = binding.iconView.background
         set(value) { binding.iconView.background = value }
 
-    override fun setCardBackgroundColor(color: Int) {
+    override fun setCardBackgroundColor(color: ColorStateList?) {
         super.setCardBackgroundColor(color)
-        updateContentColors(color)
+        
+        color?.defaultColor?.let {
+            updateContentColors(it)
+        }
+    }
+
+    override fun setCardBackgroundColor(color: Int) {
+        setCardBackgroundColor(ColorStateList.valueOf(color))
     }
 
     private fun updateContentColors(backgroundColor: Int) {
-        val isDark = MaterialColors.isColorLight(backgroundColor).not()
+        val isDark = !MaterialColors.isColorLight(backgroundColor)
         
-        val contentColor = if (isDark) {
-            context.resolveThemedColor(com.google.android.material.R.attr.colorOnPrimary)
-        } else {
-            context.resolveThemedColor(com.google.android.material.R.attr.colorOnSurface)
-        }
+        val contentColor = context.resolveThemedColor(
+            if (isDark) com.google.android.material.R.attr.colorOnPrimary 
+            else com.google.android.material.R.attr.colorOnSurface
+        )
         
         val subTextColor = if (isDark) {
-            context.resolveThemedColor(com.google.android.material.R.attr.colorOnPrimary).setAlpha(0.7f)
+            contentColor.setAlpha(0.7f)
         } else {
             context.resolveThemedColor(com.google.android.material.R.attr.colorOnSurfaceVariant)
         }
 
         binding.textView.setTextColor(contentColor)
         binding.subtextView.setTextColor(subTextColor)
-        binding.iconView.backgroundTintList = android.content.res.ColorStateList.valueOf(contentColor)
+        binding.iconView.backgroundTintList = ColorStateList.valueOf(contentColor)
     }
 
     init {
@@ -83,5 +89,7 @@ class LargeActionCard @JvmOverloads constructor(
                 recycle()
             }
         }
+        
+        updateContentColors(cardBackgroundColor.defaultColor)
     }
 }
