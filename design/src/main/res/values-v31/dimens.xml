@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="large_action_card_radius">24dp</dimen>
+    <dimen name="large_action_card_elevation">1dp</dimen>
+    <dimen name="large_action_card_min_height">84dp</dimen>
+</resources>
