@@ -24,7 +24,7 @@ fun PreferenceScreen.switch(
     @DrawableRes icon: Int? = null,
     @StringRes title: Int? = null,
     @StringRes summary: Int? = null,
-    configure: SwitchPreference.() -> Unit = { darkness -> },
+    configure: SwitchPreference.() -> Unit = {},
 ): SwitchPreference {
     val binding = PreferenceSwitchBinding
         .inflate(context.layoutInflater, root, false)
@@ -44,12 +44,15 @@ fun PreferenceScreen.switch(
             set(value) {
                 binding.titleView.text = value
             }
+            
         override var summary: CharSequence?
             get() = binding.summaryView.text
             set(value) {
                 binding.summaryView.text = value
             }
+            
         override var listener: OnChangedListener? = null
+        
         override var enabled: Boolean
             get() = binding.root.isEnabled
             set(value) {
