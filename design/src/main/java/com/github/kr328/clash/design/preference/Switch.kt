@@ -24,7 +24,7 @@ fun PreferenceScreen.switch(
     @DrawableRes icon: Int? = null,
     @StringRes title: Int? = null,
     @StringRes summary: Int? = null,
-    configure: SwitchPreference.() -> Unit = {},
+    configure: SwitchPreference.() -> Unit = { darkness -> },
 ): SwitchPreference {
     val binding = PreferenceSwitchBinding
         .inflate(context.layoutInflater, root, false)
@@ -32,11 +32,13 @@ fun PreferenceScreen.switch(
     val impl = object : SwitchPreference {
         override val view: View
             get() = binding.root
+        
         override var icon: Drawable?
-            get() = binding.iconView.background
+            get() = binding.iconView.drawable
             set(value) {
-                binding.iconView.background = value
+                binding.iconView.setImageDrawable(value)
             }
+            
         override var title: CharSequence?
             get() = binding.titleView.text
             set(value) {
@@ -56,7 +58,6 @@ fun PreferenceScreen.switch(
                 binding.root.isClickable = value
                 binding.root.alpha = if (value) 1.0f else 0.33f
             }
-
     }
 
     if (icon != null) {

@@ -11,14 +11,15 @@
         android:minHeight="72dp"
         android:paddingEnd="@dimen/item_tailing_margin">
 
-        <View
+        <ImageView
             android:id="@+id/icon_view"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
             android:layout_marginHorizontal="@dimen/item_header_margin"
             android:clickable="false"
-            android:focusable="false" />
+            android:focusable="false"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="wrap_content"
