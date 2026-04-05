@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
+import androidx.core.graphics.ColorUtils
 import com.github.kr328.clash.design.R
 import com.github.kr328.clash.design.databinding.ComponentLargeActionLabelBinding
 import com.github.kr328.clash.design.util.*
@@ -32,16 +33,14 @@ class LargeActionCard @JvmOverloads constructor(
         get() = binding.iconView.background
         set(value) { binding.iconView.background = value }
 
-    override fun setCardBackgroundColor(color: ColorStateList?) {
+    override fun setCardBackgroundColor(color: Int) {
         super.setCardBackgroundColor(color)
-        
-        color?.defaultColor?.let {
-            updateContentColors(it)
-        }
+        updateContentColors(color)
     }
 
-    override fun setCardBackgroundColor(color: Int) {
-        setCardBackgroundColor(ColorStateList.valueOf(color))
+    override fun setCardBackgroundColor(color: ColorStateList?) {
+        super.setCardBackgroundColor(color)
+        color?.defaultColor?.let { updateContentColors(it) }
     }
 
     private fun updateContentColors(backgroundColor: Int) {
@@ -53,7 +52,7 @@ class LargeActionCard @JvmOverloads constructor(
         )
         
         val subTextColor = if (isDark) {
-            contentColor.setAlpha(0.7f)
+            ColorUtils.setAlphaComponent(contentColor, 178)
         } else {
             context.resolveThemedColor(com.google.android.material.R.attr.colorOnSurfaceVariant)
         }
