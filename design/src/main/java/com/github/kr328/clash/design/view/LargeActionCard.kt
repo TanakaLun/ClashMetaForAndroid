@@ -1,16 +1,13 @@
 package com.github.kr328.clash.design.view
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
-import androidx.core.graphics.ColorUtils 
 import com.github.kr328.clash.design.R
 import com.github.kr328.clash.design.databinding.ComponentLargeActionLabelBinding
 import com.github.kr328.clash.design.util.*
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.color.MaterialColors
 
 class LargeActionCard @JvmOverloads constructor(
     context: Context,
@@ -23,48 +20,26 @@ class LargeActionCard @JvmOverloads constructor(
 
     var text: CharSequence?
         get() = binding.textView.text
-        set(value) { binding.textView.text = value }
+        set(value) {
+            binding.textView.text = value
+        }
 
     var subtext: CharSequence?
         get() = binding.subtextView.text
-        set(value) { binding.subtextView.text = value }
+        set(value) {
+            binding.subtextView.text = value
+        }
 
     var icon: Drawable?
         get() = binding.iconView.background
-        set(value) { binding.iconView.background = value }
-
-    override fun setCardBackgroundColor(color: Int) {
-        super.setCardBackgroundColor(color)
-        updateContentColors(color)
-    }
-
-    override fun setCardBackgroundColor(color: ColorStateList?) {
-        super.setCardBackgroundColor(color)
-        color?.defaultColor?.let { updateContentColors(it) }
-    }
-
-    private fun updateContentColors(backgroundColor: Int) {
-        val isDark = !MaterialColors.isColorLight(backgroundColor)
-        
-        val contentColor = context.resolveThemedColor(
-            if (isDark) com.google.android.material.R.attr.colorOnPrimary 
-            else com.google.android.material.R.attr.colorOnSurface
-        )
-        
-        val subTextColor = if (isDark) {
-            ColorUtils.setAlphaComponent(contentColor, 178) 
-        } else {
-            context.resolveThemedColor(com.google.android.material.R.attr.colorOnSurfaceVariant)
+        set(value) {
+            binding.iconView.background = value
         }
-
-        binding.textView.setTextColor(contentColor)
-        binding.subtextView.setTextColor(subTextColor)
-        binding.iconView.backgroundTintList = ColorStateList.valueOf(contentColor)
-    }
 
     init {
         radius = context.resources.getDimension(R.dimen.large_action_card_radius)
         cardElevation = context.resources.getDimension(R.dimen.large_action_card_elevation)
+        
         strokeWidth = 0
 
         context.resolveClickableAttrs(attributeSet, defStyleAttr) {
@@ -87,7 +62,9 @@ class LargeActionCard @JvmOverloads constructor(
                 recycle()
             }
         }
-        
-        updateContentColors(cardBackgroundColor.defaultColor)
+
+        if (cardBackgroundColor == null) {
+            setCardBackgroundColor(context.resolveThemedColor(com.google.android.material.R.attr.colorSurfaceVariant))
+        }
     }
 }
