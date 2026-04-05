@@ -38,6 +38,8 @@ class LargeActionCard @JvmOverloads constructor(
 
     init {
         binding.root.background = null
+        
+        setCardBackgroundColor(Color.TRANSPARENT)
 
         context.resolveClickableAttrs(attributeSet, defStyleAttr) {
             isFocusable = focusable(true)
@@ -64,5 +66,6 @@ class LargeActionCard @JvmOverloads constructor(
         cardElevation = context.resources.getDimension(R.dimen.large_action_card_elevation)
         strokeWidth = 0
         setContentPadding(0, 0, 0, 0)
+        isCheckable = false
     }
 }
