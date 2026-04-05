@@ -1,6 +1,7 @@
 package com.github.kr328.clash.design.view
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
@@ -12,7 +13,7 @@ import com.google.android.material.card.MaterialCardView
 class LargeActionCard @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = 0
+    @AttrRes defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
 ) : MaterialCardView(context, attributeSet, defStyleAttr) {
     private val binding = ComponentLargeActionLabelBinding
         .inflate(context.layoutInflater, this, true)
@@ -36,13 +37,12 @@ class LargeActionCard @JvmOverloads constructor(
         }
 
     init {
+        binding.root.setBackgroundColor(Color.TRANSPARENT)
+
         context.resolveClickableAttrs(attributeSet, defStyleAttr) {
             isFocusable = focusable(true)
             isClickable = clickable(true)
-            foreground = foreground() ?: context.selectableItemBackground
         }
-        binding.root.setBackgroundColor(android.graphics.Color.TRANSPARENT)
-            setContentPadding(0, 0, 0, 0)
 
         context.theme.obtainStyledAttributes(
             attributeSet,
@@ -60,8 +60,9 @@ class LargeActionCard @JvmOverloads constructor(
         }
 
         minimumHeight = context.getPixels(R.dimen.large_action_card_min_height)
-        radius = context.getPixels(R.dimen.large_action_card_radius).toFloat()
-        elevation = context.getPixels(R.dimen.large_action_card_elevation).toFloat()
-        setCardBackgroundColor(context.resolveThemedColor(com.google.android.material.R.attr.colorSurface))
+        radius = context.resources.getDimension(R.dimen.large_action_card_radius)
+        cardElevation = context.resources.getDimension(R.dimen.large_action_card_elevation)
+        strokeWidth = 0
+        setContentPadding(0, 0, 0, 0)
     }
 }
