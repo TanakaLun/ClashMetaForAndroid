@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.github.kr328.clash.design.R
 import com.github.kr328.clash.design.util.layoutInflater
 import com.github.kr328.clash.design.util.resolveThemedColor
 
@@ -15,9 +14,10 @@ class PopupListAdapter(
     private val texts: List<CharSequence>,
     private val selected: Int,
 ) : BaseAdapter() {
-    private val colorPrimary = context.resolveThemedColor(com.google.android.material.R.attr.colorPrimary)
-    private val colorOnPrimary = context.resolveThemedColor(com.google.android.material.R.attr.colorOnPrimary)
-    private val colorControlNormal = context.resolveThemedColor(com.google.android.material.R.attr.colorControlNormal)
+    private val colorPrimaryContainer = context.resolveThemedColor(com.google.android.material.R.attr.colorPrimaryContainer)
+    private val colorOnPrimaryContainer = context.resolveThemedColor(com.google.android.material.R.attr.colorOnPrimaryContainer)
+    
+    private val colorOnSurface = context.resolveThemedColor(com.google.android.material.R.attr.colorOnSurface)
 
     override fun getCount(): Int {
         return texts.size
@@ -40,18 +40,11 @@ class PopupListAdapter(
         text.text = texts[position]
 
         if (position == selected) {
-            text.setBackgroundColor(
-                Color.argb(
-                    200,
-                    Color.red(colorPrimary),
-                    Color.green(colorPrimary),
-                    Color.blue(colorPrimary)
-                )
-            )
-            text.setTextColor(colorOnPrimary)
+            text.setBackgroundColor(colorPrimaryContainer)
+            text.setTextColor(colorOnPrimaryContainer)
         } else {
             text.setBackgroundColor(Color.TRANSPARENT)
-            text.setTextColor(colorControlNormal)
+            text.setTextColor(colorOnSurface)
         }
 
         return view
