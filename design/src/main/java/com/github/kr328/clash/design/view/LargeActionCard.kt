@@ -12,9 +12,8 @@ import com.google.android.material.card.MaterialCardView
 class LargeActionCard @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle
+    @AttrRes defStyleAttr: Int = 0
 ) : MaterialCardView(context, attributeSet, defStyleAttr) {
-
     private val binding = ComponentLargeActionLabelBinding
         .inflate(context.layoutInflater, this, true)
 
@@ -37,11 +36,6 @@ class LargeActionCard @JvmOverloads constructor(
         }
 
     init {
-        radius = context.resources.getDimension(R.dimen.large_action_card_radius)
-        cardElevation = context.resources.getDimension(R.dimen.large_action_card_elevation)
-        
-        strokeWidth = 0
-
         context.resolveClickableAttrs(attributeSet, defStyleAttr) {
             isFocusable = focusable(true)
             isClickable = clickable(true)
@@ -63,8 +57,9 @@ class LargeActionCard @JvmOverloads constructor(
             }
         }
 
-        if (cardBackgroundColor == null) {
-            setCardBackgroundColor(context.resolveThemedColor(com.google.android.material.R.attr.colorSurfaceVariant))
-        }
+        minimumHeight = context.getPixels(R.dimen.large_action_card_min_height)
+        radius = context.getPixels(R.dimen.large_action_card_radius).toFloat()
+        elevation = context.getPixels(R.dimen.large_action_card_elevation).toFloat()
+        setCardBackgroundColor(context.resolveThemedColor(com.google.android.material.R.attr.colorSurface))
     }
 }
