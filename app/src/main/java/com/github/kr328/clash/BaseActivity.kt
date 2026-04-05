@@ -98,7 +98,7 @@ abstract class BaseActivity<D : Design<*>> : AppCompatActivity(),
             DynamicColors.applyToActivityIfAvailable(this)
         }
         super.onCreate(savedInstanceState)
-        updateSystemBars(dayNightValue)
+        // updateSystemBars(dayNightValue)
         // Apply excludeFromRecents setting to all app tasks.
         checkNotNull(getSystemService<ActivityManager>()).appTasks.forEach { task ->
             task.setExcludeFromRecents(uiStore.hideFromRecents)
@@ -197,23 +197,23 @@ abstract class BaseActivity<D : Design<*>> : AppCompatActivity(),
         }
     }
     
-    private fun updateSystemBars(currentDayNight: DayNight) {
-        window.isAllowForceDarkCompat = false
-        window.isSystemBarsTranslucentCompat = true
+    // private fun updateSystemBars(currentDayNight: DayNight) {
+        // window.isAllowForceDarkCompat = false
+        // window.isSystemBarsTranslucentCompat = true
         
-        window.statusBarColor = resolveThemedColor(android.R.attr.statusBarColor)
-        window.navigationBarColor = resolveThemedColor(android.R.attr.navigationBarColor)
+        // window.statusBarColor = resolveThemedColor(android.R.attr.statusBarColor)
+        // window.navigationBarColor = resolveThemedColor(android.R.attr.navigationBarColor)
     
-        if (Build.VERSION.SDK_INT >= 23) {
-            window.isLightStatusBarsCompat = resolveThemedBoolean(android.R.attr.windowLightStatusBar)
-        }
+        // if (Build.VERSION.SDK_INT >= 23) {
+            // window.isLightStatusBarsCompat = resolveThemedBoolean(android.R.attr.windowLightStatusBar)
+        // }
     
-        if (Build.VERSION.SDK_INT >= 27) {
-            window.isLightNavigationBarCompat = resolveThemedBoolean(android.R.attr.windowLightNavigationBar)
-        }
+        // if (Build.VERSION.SDK_INT >= 27) {
+            // window.isLightNavigationBarCompat = resolveThemedBoolean(android.R.attr.windowLightNavigationBar)
+        // }
     
-        this.dayNight = currentDayNight
-    }
+        // this.dayNight = currentDayNight
+    // }
 
     private fun queryDayNight(config: Configuration = resources.configuration): DayNight {
         return when (uiStore.darkMode) {
