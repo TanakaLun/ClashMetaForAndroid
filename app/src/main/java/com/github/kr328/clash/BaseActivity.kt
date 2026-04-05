@@ -225,12 +225,8 @@ abstract class BaseActivity<D : Design<*>> : AppCompatActivity(),
 
     private fun applyDayNight(config: Configuration = resources.configuration) {
         val dayNight = queryDayNight(config)
-        if (!uiStore.dynamicColor) {
-            when (dayNight) {
-                DayNight.Night -> theme.applyStyle(R.style.AppThemeDark, true)
-                DayNight.Day -> theme.applyStyle(R.style.AppThemeLight, true)
-            }
-        } else {
+        
+        if (uiStore.dynamicColor) {
             val baseM3Theme = if (dayNight == DayNight.Night) 
                 com.google.android.material.R.style.Theme_Material3_Dark_NoActionBar
             else 
@@ -238,22 +234,28 @@ abstract class BaseActivity<D : Design<*>> : AppCompatActivity(),
             theme.applyStyle(baseM3Theme, false) 
         }
     
+        when (dayNight) {
+            DayNight.Night -> theme.applyStyle(R.style.AppThemeDark, true)
+            DayNight.Day -> theme.applyStyle(R.style.AppThemeLight, true)
+        }
+    
         window.isAllowForceDarkCompat = false
         window.isSystemBarsTranslucentCompat = true
         
         window.statusBarColor = resolveThemedColor(android.R.attr.statusBarColor)
         window.navigationBarColor = resolveThemedColor(android.R.attr.navigationBarColor)
-
+    
         if (Build.VERSION.SDK_INT >= 23) {
             window.isLightStatusBarsCompat = resolveThemedBoolean(android.R.attr.windowLightStatusBar)
         }
-
+    
         if (Build.VERSION.SDK_INT >= 27) {
             window.isLightNavigationBarCompat = resolveThemedBoolean(android.R.attr.windowLightNavigationBar)
         }
-
+    
         this.dayNight = dayNight
     }
+    
 
     enum class Event {
         ServiceRecreated,
