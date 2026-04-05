@@ -12,6 +12,10 @@
         <item name="textAppearanceHeadline6">?attr/textAppearanceHeadlineSmall</item>
         
         <item name="android:showText">false</item>
+        
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="AppThemeDark" parent="@style/Theme.Material3.Dark.NoActionBar">
@@ -26,5 +30,9 @@
         <item name="textAppearanceHeadline6">?attr/textAppearanceHeadlineSmall</item>
         
         <item name="android:showText">false</item>
+        
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 </resources>
