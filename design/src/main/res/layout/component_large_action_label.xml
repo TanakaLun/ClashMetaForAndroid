@@ -6,8 +6,7 @@
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/large_item_padding_vertical"
-        android:background="@{clashRunning ? colorClashStarted : colorClashStopped}" >
+        android:paddingVertical="@dimen/large_item_padding_vertical" >
 
         <View
             android:id="@+id/icon_view"
