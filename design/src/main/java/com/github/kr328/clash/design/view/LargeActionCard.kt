@@ -41,6 +41,8 @@ class LargeActionCard @JvmOverloads constructor(
             isClickable = clickable(true)
             foreground = foreground() ?: context.selectableItemBackground
         }
+        binding.root.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+            setContentPadding(0, 0, 0, 0)
 
         context.theme.obtainStyledAttributes(
             attributeSet,
