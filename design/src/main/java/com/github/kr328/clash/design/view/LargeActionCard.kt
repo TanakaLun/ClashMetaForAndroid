@@ -5,7 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
-import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.ColorUtils 
 import com.github.kr328.clash.design.R
 import com.github.kr328.clash.design.databinding.ComponentLargeActionLabelBinding
 import com.github.kr328.clash.design.util.*
@@ -52,7 +52,7 @@ class LargeActionCard @JvmOverloads constructor(
         )
         
         val subTextColor = if (isDark) {
-            ColorUtils.setAlphaComponent(contentColor, 178)
+            ColorUtils.setAlphaComponent(contentColor, 178) 
         } else {
             context.resolveThemedColor(com.google.android.material.R.attr.colorOnSurfaceVariant)
         }
@@ -65,7 +65,6 @@ class LargeActionCard @JvmOverloads constructor(
     init {
         radius = context.resources.getDimension(R.dimen.large_action_card_radius)
         cardElevation = context.resources.getDimension(R.dimen.large_action_card_elevation)
-        
         strokeWidth = 0
 
         context.resolveClickableAttrs(attributeSet, defStyleAttr) {
